@@ -6,7 +6,7 @@
   <link href="https://lx09.github.io/atom.xml" rel="self"/>
   
   <link href="https://lx09.github.io/"/>
-  <updated>2021-10-29T06:02:31.121Z</updated>
+  <updated>2022-05-17T11:24:40.876Z</updated>
   <id>https://lx09.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>design patterns and good practices</title>
+    <link href="https://lx09.github.io/2022/05/17/design-patterns-and-good-practices/"/>
+    <id>https://lx09.github.io/2022/05/17/design-patterns-and-good-practices/</id>
+    <published>2022-05-17T11:08:21.000Z</published>
+    <updated>2022-05-17T11:24:40.876Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近项目对接和后续项目安排让我感觉代码能力急需提高。我认为重中之重就是代码架构这方面，欠缺比较多，因此从设计模式开始一点点补代码能力。这是一份<a href="https://homeworks.java.en.sdacademy.pro/design_pattern_and_good_practices/exercises/">设计模式的练习题</a>，正好入门设计模式。</p><h1 id="Exercise-1-singleton"><a href="#Exercise-1-singleton" class="headerlink" title="Exercise 1 - singleton"></a>Exercise 1 - singleton</h1><blockquote><p>单例模式是最简单的设计模式，其主要思想是类只能初始化一个实例，并且全部都可能使用这个实例。之前在写项目代码的时候，单例模式经常会用到，但是我都胡乱写的，用了很多类变量代替单例模式😤。</p></blockquote><p>Create a singleton Servers of <code>lazy</code> type. This singleton stores the list of servers (as String). Implement the following functionalities:</p><ul><li>adding a server to the list<ul><li>a method adding the server to the list should return boolean (true if the server has been added to the list, false if it’s otherwise)</li><li>adding is possible, if its name starts from http or https</li><li>adding a duplicated name is impossible.</li></ul></li><li>downloading a list of servers, that names start from http.</li><li>downloading a list of servers, that names start from https.</li></ul><blockquote><p><code>lazy</code>, i.e., <code>Lazy Instatiation</code>. As shown in the following code.It’ll only get instantiated when someone will invoke the getInstance() method. </p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> SingletonClasses;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;Singleton being initialized&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(instance == <span class="keyword">null</span>)</span><br><span class="line">instance = <span class="keyword">new</span> Singleton();</span><br><span class="line"><span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近项目对接和后续项目安排让我感觉代码能力急需提高。我认为重中之重就是代码架构这方面，欠缺比较多，因此从设计模式开始一点点补代码能力。这是一份&lt;a href=&quot;https://homeworks.java.en.sdacademy.pro/design_pattern_an</summary>
+      
+    
+    
+    
+    <category term="Java" scheme="https://lx09.github.io/categories/Java/"/>
+    
+    
+    <category term="design patterns" scheme="https://lx09.github.io/tags/design-patterns/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>

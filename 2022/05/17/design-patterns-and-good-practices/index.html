@@ -19,7 +19,7 @@
     <meta name="keywords" content="Code, Test">
 
 
-<title>Hello World | lixin&#39;s blog</title>
+<title>design patterns and good practices | lixin&#39;s blog</title>
 
 
 
@@ -200,7 +200,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">design patterns and good practices</h1>
             
                 <div class="post-meta">
                     
@@ -209,28 +209,41 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 29, 2021&nbsp;&nbsp;</a>
+                        Date: <a href="#">May 17, 2022&nbsp;&nbsp;</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Java/">Java</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+            <p>最近项目对接和后续项目安排让我感觉代码能力急需提高。我认为重中之重就是代码架构这方面，欠缺比较多，因此从设计模式开始一点点补代码能力。这是一份<a target="_blank" rel="noopener" href="https://homeworks.java.en.sdacademy.pro/design_pattern_and_good_practices/exercises/">设计模式的练习题</a>，正好入门设计模式。</p>
+<h1 id="Exercise-1-singleton"><a href="#Exercise-1-singleton" class="headerlink" title="Exercise 1 - singleton"></a>Exercise 1 - singleton</h1><blockquote>
+<p>单例模式是最简单的设计模式，其主要思想是类只能初始化一个实例，并且全部都可能使用这个实例。之前在写项目代码的时候，单例模式经常会用到，但是我都胡乱写的，用了很多类变量代替单例模式😤。</p>
+</blockquote>
+<p>Create a singleton Servers of <code>lazy</code> type. This singleton stores the list of servers (as String). Implement the following functionalities:</p>
+<ul>
+<li>adding a server to the list<ul>
+<li>a method adding the server to the list should return boolean (true if the server has been added to the list, false if it’s otherwise)</li>
+<li>adding is possible, if its name starts from http or https</li>
+<li>adding a duplicated name is impossible.</li>
+</ul>
+</li>
+<li>downloading a list of servers, that names start from http.</li>
+<li>downloading a list of servers, that names start from https.</li>
+</ul>
+<blockquote>
+<p><code>lazy</code>, i.e., <code>Lazy Instatiation</code>. As shown in the following code.It’ll only get instantiated when someone will invoke the getInstance() method. </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> SingletonClasses;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;Singleton being initialized&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(instance == <span class="keyword">null</span>)</span><br><span class="line">			instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -240,6 +253,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/design-patterns/"># design patterns</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -250,8 +267,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/05/17/design-patterns-and-good-practices/">design patterns and good practices</a>
             
+            <a class="next" rel="next" href="/2021/10/29/hello-world/">Hello World</a>
             
         </section>
 
