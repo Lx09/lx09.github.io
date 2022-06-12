@@ -19,7 +19,7 @@
     <meta name="keywords" content="Code, Test">
 
 
-<title>Knowledge Graph: Overview | lixin&#39;s blog</title>
+<title>VsCode+Latex调用bibtex | lixin&#39;s blog</title>
 
 
 
@@ -200,7 +200,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Knowledge Graph: Overview</h1>
+            <h1 class="post-title">VsCode+Latex调用bibtex</h1>
             
                 <div class="post-meta">
                     
@@ -209,14 +209,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">June 8, 2022&nbsp;&nbsp;</a>
+                        Date: <a href="#">June 12, 2022&nbsp;&nbsp;</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Knowledge-Graph/">Knowledge Graph</a>
+                                <a href="/categories/Latex/">Latex</a>
                             
                         </span>
                     
@@ -225,44 +225,23 @@
         </header>
 
         <div class="post-content">
-            <h1 id="知识图谱构建技术"><a href="#知识图谱构建技术" class="headerlink" title="知识图谱构建技术"></a>知识图谱构建技术</h1><p>知识图谱构建技术图分成三个部分：<strong>知识获取， 数据融合和知识计算及应用</strong></p>
-<h2 id="知识获取"><a href="#知识获取" class="headerlink" title="知识获取"></a>知识获取</h2><p>知识获取解决如何从非结构化、半结构化和结构化数据中获取知识。</p>
-<ul>
-<li><p>非结构化数据处理</p>
-<ul>
-<li><p>对非结构化数据提取正文。例如互联网数据存在大量的广告，正文提取技术希望有效过滤广告而只保留用户关注的文本内容</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Bibtex管理参考文献十分方便，但是在Vscode平台使用latex可能会引用文献不显示，参考文献列表也不显示的问题。排除语法使用不当的问题，最大的可能是VsCode相关环境设置不对。</p>
+<h1 id="Bibtex调用逻辑"><a href="#Bibtex调用逻辑" class="headerlink" title="Bibtex调用逻辑"></a>Bibtex调用逻辑</h1><ol>
+<li>准备好tex主文件和bib参考文献文件</li>
+<li>xelatex编译tex文件</li>
+<li><strong>使用bibtex处理tex中涉及的bib文件</strong></li>
+<li>再次调用xelatex编译tex文件，刷新生成的pdf文件</li>
+</ol>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>VsCode默认没有使用bibtex编译bib文件，报错中会出现<code>no tex文件名.bbl file</code></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
+<li><p>Mac快捷键<code>Command + ,</code>或者点击VsCode左下角齿轮，打开setting</p>
 </li>
-<li><p>使用自然语言处理技术识别文章中的实体。如果已有一个知识库，使用实体链接将文章中的候选实体链接到知识库上；如果没有知识库，使用命名实体识别技术识别文章中的实体。如果实体存在别名或者简称，需要构建实体的同义词表，让不同实体具有相同的描述</p>
-<blockquote>
-<p>命名实体识别可能用到分词、词性标注，以及深度学习模型中需要用到分布式表达如词向量。为了得到不同粒度的知识还需要提取文本中的关键词，获取文章的潜在主题等。</p>
-</blockquote>
+<li><p>在setting页面中搜索recipe，选择Latex相关，点击<code>Edit in settings.json</code><br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/20220612163618.png" alt="Latex: Recipes"></p>
 </li>
-<li><p>实体关系识别。部分实体关系识别技术使用句法结构来帮助确定两个实体间的关系，涉及依存分析或者语义解析。如果用户还想获取事件的详细内容，需要确定事件的触发词并获取事件相应描述的句子，同时识别句子中实体对应事件的角色</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>半结构化数据处理。主要工作是通过包装器学习半结构化数据的抽取规则。半结构化数据具有大量重复性的结构，因此对数据进行少量的标注，可以让机器学到一定的规则，进而在整个站点下使用规则对同类型或符合某种关系的数据进行抽取。使用时需要使用ETL工具对数据进行重新组织、清洗和检测，最后得到符合用户使用目的的数据</li>
-</ul>
-<h3 id="实体关系识别技术"><a href="#实体关系识别技术" class="headerlink" title="实体关系识别技术"></a>实体关系识别技术</h3><ul>
-<li><p>基于统计学的方法将识别实体间关系的问题转化为分类问题，需要加入实体关系上下文信息</p>
-</li>
-<li><p>基于监督的方法依赖大量的标注数据，不适用于构建大规模的KG</p>
-</li>
-<li><p>半监督学习，主要基于Bootstrap方法，利用少量实例作为初始种子集合，利用pattern学习方法进行学习，通过不断迭代，从非结构化数据中抽取实例，然后从新学到的实例中学习新的pattern，并扩充pattern集合</p>
-</li>
-<li><p>无监督学习一般利用语料中存在的大量冗余信息做聚类，在聚类结果的基础上给定关系。聚类方法本身难以描述关系，且低频实例召回率低，难以取得很好的抽取效果</p>
-</li>
-</ul>
-<h2 id="知识融合"><a href="#知识融合" class="headerlink" title="知识融合"></a>知识融合</h2><p>从不同数据源获取的知识需要使用统一的术语将其融合成一个庞大的知识库。<strong>本体</strong>是提供统一术语的结构或者数据，不仅提供统一的术语字典，还构建了各个术语间的关系和限制。使用数据映射技术建立本体中术语和不同数据源抽取知识中词汇的映射关系。不同源的实体可能会指向现实世界的同一客体，使用实体匹配将不同数据源相同客体的数据进行融合。不同本体在某些术语中描述同一类数据，需要使用本体融合技术把不同本体融合</p>
-<p>知识融合（knowledge fusion）与传统数据融合（data fusion）任务主要不同在于知识融合考虑多个知识抽取工具。除了抽取出来的事实本身可能存在不同的结果，不同抽取工具通过实体链接和本体匹配可能产生不同的结果。此外还需要考虑本体融合和实体融合。</p>
-<h2 id="知识计算及应用"><a href="#知识计算及应用" class="headerlink" title="知识计算及应用"></a>知识计算及应用</h2><ul>
-<li>知识计算通过本体或者规则推理技术获取数据中的隐含知识</li>
-<li>链接预测可预测实体间隐含的关系</li>
-<li>社会计算算法在知识网络上计算获取图谱中存在的团体，提供知识间关联的路径</li>
-<li>不一致检测技术发现数据中的噪声和缺陷</li>
-</ul>
+<li><p>修改Recipes配置信息并保存</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;latex-workshop.latex.recipes&quot;</span>: </span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;, </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;latexmk&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex -&gt; bibtex -&gt; xelatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,   </span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>设置完成后，选择红框中编译recipe，而不使用默认的编译配置。也可以将该recipe作为默认编译配置，但是我偏好自动编译，额外使用1*bibtex+2*xelatex拖慢编译速度。</p>
 
         </div>
 
@@ -272,6 +251,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/vscode/"># vscode</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -282,10 +265,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/06/12/VsCode-Latex%E8%B0%83%E7%94%A8bibtex/">VsCode+Latex调用bibtex</a>
             
-            
-            <a class="next" rel="next" href="/2022/05/17/design-patterns-and-good-practices/">design patterns and good practices</a>
+            <a class="next" rel="next" href="/2022/06/08/Knowledge-Graph-Overview/">Knowledge Graph: Overview</a>
             
         </section>
 

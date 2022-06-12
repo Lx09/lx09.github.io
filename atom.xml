@@ -6,7 +6,7 @@
   <link href="https://lx09.github.io/atom.xml" rel="self"/>
   
   <link href="https://lx09.github.io/"/>
-  <updated>2022-06-09T07:02:48.485Z</updated>
+  <updated>2022-06-12T08:47:21.911Z</updated>
   <id>https://lx09.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VsCode+Latex调用bibtex</title>
+    <link href="https://lx09.github.io/2022/06/12/VsCode-Latex%E8%B0%83%E7%94%A8bibtex/"/>
+    <id>https://lx09.github.io/2022/06/12/VsCode-Latex%E8%B0%83%E7%94%A8bibtex/</id>
+    <published>2022-06-12T08:14:40.000Z</published>
+    <updated>2022-06-12T08:47:21.911Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Bibtex管理参考文献十分方便，但是在Vscode平台使用latex可能会引用文献不显示，参考文献列表也不显示的问题。排除语法使用不当的问题，最大的可能是VsCode相关环境设置不对。</p><h1 id="Bibtex调用逻辑"><a href="#Bibtex调用逻辑" class="headerlink" title="Bibtex调用逻辑"></a>Bibtex调用逻辑</h1><ol><li>准备好tex主文件和bib参考文献文件</li><li>xelatex编译tex文件</li><li><strong>使用bibtex处理tex中涉及的bib文件</strong></li><li>再次调用xelatex编译tex文件，刷新生成的pdf文件</li></ol><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>VsCode默认没有使用bibtex编译bib文件，报错中会出现<code>no tex文件名.bbl file</code></p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol><li><p>Mac快捷键<code>Command + ,</code>或者点击VsCode左下角齿轮，打开setting</p></li><li><p>在setting页面中搜索recipe，选择Latex相关，点击<code>Edit in settings.json</code><br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/20220612163618.png" alt="Latex: Recipes"></p></li><li><p>修改Recipes配置信息并保存</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;latex-workshop.latex.recipes&quot;</span>: </span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;, </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;latexmk&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex -&gt; bibtex -&gt; xelatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,   </span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br></pre></td></tr></table></figure></li></ol><p>设置完成后，选择红框中编译recipe，而不使用默认的编译配置。也可以将该recipe作为默认编译配置，但是我偏好自动编译，额外使用1*bibtex+2*xelatex拖慢编译速度。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;使用Bibtex管理参考文献十分方便，但是在Vscode平台使用latex可能会引用文献不显示，参考文献列表也不显示的问题。排除语法使用不当</summary>
+      
+    
+    
+    
+    <category term="Latex" scheme="https://lx09.github.io/categories/Latex/"/>
+    
+    
+    <category term="vscode" scheme="https://lx09.github.io/tags/vscode/"/>
+    
+  </entry>
   
   <entry>
     <title>Knowledge Graph: Overview</title>
