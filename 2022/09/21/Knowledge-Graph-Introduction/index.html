@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lixin">
+
+
+    <meta name="subtitle" content="Better Late Than Never">
+
+
+    <meta name="description" content="lixin`s blog">
+
+
+    <meta name="keywords" content="Code, Test">
+
+
+<title>Knowledge Graph: Introduction | lixin&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="lixin's blog" type="application/atom+xml">
+</head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Lixin&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Lixin&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Knowledge Graph: Introduction</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lixin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 21, 2022&nbsp;&nbsp;</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Knowledge-Graph/">Knowledge Graph</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="知识图谱学习系列（1）"><a href="#知识图谱学习系列（1）" class="headerlink" title="知识图谱学习系列（1）"></a>知识图谱学习系列（1）</h1><blockquote>
+<p>课程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VT411G7Y6?share_source=copy_web&vd_source=f277540baf9cc235db9545e4bb131a24">浙江大学知识图谱公开课 陈华钧</a></p>
+</blockquote>
+<h2 id="语言与知识"><a href="#语言与知识" class="headerlink" title="语言与知识"></a>语言与知识</h2><h3 id="聪明的AI-VS-有学识的AI"><a href="#聪明的AI-VS-有学识的AI" class="headerlink" title="聪明的AI VS 有学识的AI"></a>聪明的AI VS 有学识的AI</h3><ul>
+<li>聪明的AI（连接主义，例如深度学习）：感知、识别和判断</li>
+<li>有学识的AI（符号主义， 例如知识图谱）：认知、语言和知识</li>
+</ul>
+<blockquote>
+<p>人工智能的三大学派</p>
+<ul>
+<li>符号主义（逻辑主义、心理学派或计算机学派）：其原理主要为物理符号系统(即符号操作系统)假设和有限合理性原理。符号主义认为人工智能源于数理逻辑。数理逻辑从19世纪末起得以迅速发展，到20世纪30年代开始用于描述智能行为。计算机出现后，又在计算机上实现了逻辑演绎系统。其有代表性的成果为启发式程序LT逻辑理论家，它证明了38条数学定理，表明了可以应用计算机研究人的思维过程，模拟人类智能活动。正是这些符号主义者，早在1956年首先采用“人工智能”这个术语。后来又发展了启发式算法&gt;专家系统&gt;知识工程理论与技术，并在20世纪80年代取得很大发展。符号主义曾长期一枝独秀，为人工智能的发展作出重要贡献，尤其是专家系统的成功开发与应用，为人工智能走向工程应用和实现理论联系实际具有特别重要的意义。在人工智能的其他学派出现之后，符号主义仍然是人工智能的主流派别。这个学派的代表人物有纽厄尔(Newell)、西蒙(Simon)和尼尔逊(Nilsson)等。</li>
+<li>连接主义（仿生学派或生理学派）：其原理为神经网络及神经网络间的连接机制与学习算法。连接主义认为人工智能源于仿生学，特别是对人脑模型的研究。它的代表性成果是1943年由生理学家麦卡洛克(McCulloch)和数理逻辑学家皮茨(Pitts)创立的脑模型，即MP模型，开创了用电子装置模仿人脑结构和功能的新途径。它从神经元开始进而研究神经网络模型和脑模型，开辟了人工智能的又一发展道路。20世纪60~70年代，连接主义，尤其是对以感知机(perceptron)为代表的脑模型的研究出现过热潮，由于受到当时的理论模型、生物原型和技术条件的限制，脑模型研究在20世纪70年代后期至80年代初期落入低潮。直到Hopfield教授在1982年和1984年发表两篇重要论文，提出用硬件模拟神经网络以后，连接主义才又重新抬头。1986年，鲁梅尔哈特(Rumelhart)等人提出多层网络中的反向传播(BP)算法。此后，连接主义势头大振，从模型到算法，从理论分析到工程实现，为神经网络计算机走向市场打下基础。现在，对人工神经网络(ANN)的研究热情仍然较高，但研究成果没有像预想的那样好。</li>
+<li>行为主义（进化主义或控制论学派）：其原理为控制论及感知-动作型控制系统。行为主义认为人工智能源于控制论。控制论思想早在20世纪40<del>50年代就成为时代思潮的重要部分，影响了早期的人工智能工作者。维纳(Wiener)和麦克洛克(McCulloch)等人提出的控制论和自组织系统以及钱学森等人提出的工程控制论和生物控制论，影响了许多领域。控制论把神经系统的工作原理与信息理论、控制理论、逻辑以及计算机联系起来。早期的研究工作重点是模拟人在控制过程中的智能行为和作用，如对自寻优、自适应、自镇定、自组织和自学习等控制论系统的研究，并进行“控制论动物”的研制。到20世纪60</del>70年代，上述这些控制论系统的研究取得一定进展，播下智能控制和智能机器人的种子，并在20世纪80年代诞生了智能控制和智能机器人系统。行为主义是20世纪末才以人工智能新学派的面孔出现的，引起许多人的兴趣。这一学派的代表作者首推布鲁克斯(Brooks)的六足行走机器人，它被看作是新一代的“控制论动物”，是一个基于感知-动作模式模拟昆虫行为的控制系统。</li>
+</ul>
+</blockquote>
+<p>认知智能 = 语言理解 + 知识表示</p>
+<h3 id="知识"><a href="#知识" class="headerlink" title="知识"></a>知识</h3><ul>
+<li><p>知识工程和专家系统<br>知识工程：从人脑中获得知识，借助推理引擎给非专家用户提供知识<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209211412849.png" alt="专家系统"></p>
+</li>
+<li><p>语言是知识的自然描述方式和表达载体，人工智能需要从文本从抽取知识。目前有两大类抽取方法</p>
+<ul>
+<li>抽取技术：文本中识别实体，关系等</li>
+<li>文本预训练</li>
+</ul>
+</li>
+</ul>
+<h3 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h3><p>知识图谱旨在利用图结构建模、识别和推断事物之间的复杂关联关系和沉淀领域知识，是实现认知智能的重要基石，已经被广泛应用于搜索引擎、智能问答、语言语义理解、大数据决策分析和智能物联等众多领域。</p>
+<h4 id="Embeddings-as-Knowledge-Base"><a href="#Embeddings-as-Knowledge-Base" class="headerlink" title="Embeddings as Knowledge Base"></a>Embeddings as Knowledge Base</h4><blockquote>
+<p>Embeddings: Distributed Vector Representation</p>
+</blockquote>
+<ul>
+<li>自然语言：为句子中的每个词学习一个向量表示</li>
+<li>知识图谱：为每个实体和关系学习一个向量表示</li>
+<li>图像视频：为视觉中的每个对象学习一个向量表示</li>
+</ul>
+<h4 id="万物的机器表示（KG-as-a-World-Model）"><a href="#万物的机器表示（KG-as-a-World-Model）" class="headerlink" title="万物的机器表示（KG as a World Model）"></a>万物的机器表示（KG as a World Model）</h4><p><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209211423678.png" alt="万物机器表示的演化"></p>
+<h4 id="知识图谱溯源"><a href="#知识图谱溯源" class="headerlink" title="知识图谱溯源"></a>知识图谱溯源</h4><ul>
+<li>（World Wide Web）人的记忆偏重关联 -&gt; MEMEX记忆机器 -&gt; 启发了超文本技术 -&gt; Web -&gt; 维基百科</li>
+<li>（The Semantic Web）Web of Texts, Web of documents -&gt; Web of Objects, Web of Data, Web of Things. </li>
+</ul>
+<h4 id="典型知识图谱项目"><a href="#典型知识图谱项目" class="headerlink" title="典型知识图谱项目"></a>典型知识图谱项目</h4><ul>
+<li><p>FreeBase<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209211447245.png" alt="FreeBase"> </p>
+</li>
+<li><p>WikiData（基于FreeBase）<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209211448505.png" alt="WikiData"></p>
+</li>
+<li><p>Schema.org（谷歌等互联网公司制定的互联网数据Schema标准, 是轻量级的Ontology）<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209211449680.png" alt="Schema.org"></p>
+</li>
+<li><p>DBpedia<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209211451869.png" alt="DBpedia"></p>
+</li>
+<li><p>YAGO集成Wikipedia, WordNet和GeoNames三个来源的数据。YAGO将WordNet的词汇定义与Wikipedia的分类体系进行了融合即成，使得YAGO具有更加丰富的实体分类体系。</p>
+<p>  YAGO还考虑了时间和空间知识，为很多知识条目增加了时间和空间维度的属性描述。目前，YAGO包含数亿条高质量三元组知识。YAGO是IBM Watson的后端知识库之一。</p>
+</li>
+<li><p>WordNet<br>WordNet是最著名的词典知识库，主要用于词义消歧。由普林斯顿大学认知科学实验室自1985年开始开发。</p>
+<p>  WordNet主要定义了名次、动词、形容词和副词之间的语义关系。例如名词之间的上下位关系（如“猫科动物”是“猫”的上位词）， 动词之间的蕴含关系（如“打鼾”蕴含着“睡眠”）等</p>
+<p>  WordNet 3.0 已经包含超过15万个词和20万个语义关系</p>
+</li>
+<li><p>ConceptNet最早源于MIT等Open Mind Common Sense项目，由著名人工智能专家Marvin Minsky于1999年建议创立。</p>
+<p>  与谷歌知识图谱相比，ConceptNet侧重于词与词之间的关系。更加接近于WordNet， 但是比WordNet包含的关系类型多</p>
+<p>  ConceptNet完全免费开放，并支持多种语言</p>
+</li>
+<li><p>BobelNet是多语言词典知识库。包含了271种语言，1400万同义词组，36.4万词语关系和3.8亿从Wikipedia中抽取的链接关系，总计超过19亿RDF三元组。</p>
+<p>  BabelNet即成了WordNet在词语关系上的优势和Wikipedia在多语言方面的优势，是目前最大规模的多语言词典知识库</p>
+</li>
+<li><p>中文领域开发知识图谱： OpenKG.CN</p>
+</li>
+</ul>
+<h4 id="知识图谱相关概念演变"><a href="#知识图谱相关概念演变" class="headerlink" title="知识图谱相关概念演变"></a>知识图谱相关概念演变</h4><p><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209211509021.png" alt="概念演变"></p>
+<p>知识图谱两个核心基因：人工智能 + 互联网</p>
+<h4 id="知识图谱价值"><a href="#知识图谱价值" class="headerlink" title="知识图谱价值"></a>知识图谱价值</h4><ul>
+<li>KG辅助搜索-语义搜索（谷歌知识图谱：Things, not Strings!）</li>
+<li>KG辅助问答交互-知识问答</li>
+<li>KG辅助推荐系统。将知识图谱引入推荐系统，可以增强User和Item的特征表示，有利于挖掘更深层次的用户兴趣，关系多样性也有利于实现更加个性化的推荐，丰富的语义描述还可以增强推荐结果的可解释性</li>
+<li>KG辅助大数据分析。</li>
+<li>KG辅助语言理解。WINOGRAD SCHEMA CHALLENGE: 纯NLP 50% -&gt; NLP + KB: 超过60% -&gt; 及格线：90%</li>
+<li>KG辅助视觉理解。将视觉识别出的对象链接到外源的知识图谱，可用来辅助图像语义关系抽取和视觉语义的深入理解等</li>
+<li>KG语义辅助设备互联</li>
+</ul>
+<h4 id="领域应用举例"><a href="#领域应用举例" class="headerlink" title="领域应用举例"></a>领域应用举例</h4><p><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209211528336.png" alt="无人驾驶知识图谱"></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/09/05/%E7%A7%91%E7%A0%94%E9%A3%8E%E6%A0%BC%E5%9B%BE%E8%A1%A8/">科研风格图表</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 2021 - 2022  lixin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
