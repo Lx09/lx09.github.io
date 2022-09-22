@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lixin">
+
+
+    <meta name="subtitle" content="Better Late Than Never">
+
+
+    <meta name="description" content="lixin`s blog">
+
+
+    <meta name="keywords" content="Code, Test">
+
+
+<title>Kneowledge Graph: Knowledge Representation | lixin&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="lixin's blog" type="application/atom+xml">
+</head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Lixin&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Lixin&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Kneowledge Graph: Knowledge Representation</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lixin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 22, 2022&nbsp;&nbsp;</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Knowledge-Graph/">Knowledge Graph</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <blockquote>
+<p>课程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VT411G7Y6?share_source=copy_web&vd_source=f277540baf9cc235db9545e4bb131a24">浙江大学知识图谱公开课 陈华钧</a></p>
+</blockquote>
+<h1 id="知识表示的定义"><a href="#知识表示的定义" class="headerlink" title="知识表示的定义"></a>知识表示的定义</h1><ul>
+<li>The Good Old Fashioned AI：专家系统（Expert System）将专家的知识抽取出来给非专业人士使用，例如辅助诊断等</li>
+<li>知识表示的经典文档：<a target="_blank" rel="noopener" href="https://ojs.aaai.org//index.php/aimagazine/article/view/1029">What is a Knowledge Representation</a><ul>
+<li>Role 1: A Knowledge Representation Is a Surrogate（客观事物的机器标识）</li>
+<li>Role 2: A Knowledge Representation Is a Set of Ontological Commitments（一组本体约定和概念模型）</li>
+<li>Role 3: A Knowledge Representation Is a Fragmentary Theory of Intelligent Reasoning（支持推理的表示基础）</li>
+<li>Role 4: A Knowledge Representation Is a Medium for Efficient Computation（用于高效计算的数据结构）</li>
+<li>Role 5: A Knowledge Representation Is a Medium of Human Expression（人可理解的机器语言） </li>
+</ul>
+</li>
+<li>简单而言，知识表示（KR）就是用易于计算机处理的方式来描述人脑的知识的方法</li>
+<li>KR不是数据格式、不等同于数据结构，也不是编程语言，对于人工智能而言，数据与知识的区别在于KR支持推理</li>
+<li>KR = Computational Model of Reality</li>
+<li>Based on the roles talked in the above paper, each object has an <strong>Entity ID</strong>, KG extracts <strong>Ontological Commitments</strong> from all of objects, <strong>reasons</strong> new knowledge.<br>The knowledge is <strong>efficient for computation</strong>, and is <strong>readable</strong> for human.</li>
+</ul>
+<h2 id="知识的符号表示"><a href="#知识的符号表示" class="headerlink" title="知识的符号表示"></a>知识的符号表示</h2><ul>
+<li>传统人工智能领域使用符号表示知识<ul>
+<li>一阶谓词逻辑（First-Order Logic）</li>
+<li>语义网络（Semantic Net) -&gt; 影响了知识图谱的发展</li>
+<li>产生式规则（Production Rule）</li>
+<li>框架系统（Framework）-&gt; 影响了对话系统的发展</li>
+<li>描述逻辑（Description Logic）-&gt; 影响了知识图谱的发展</li>
+<li>逻辑程序（Logic Programming）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>对话系统（Dialogue System），是一种模拟人类并旨在与人类形成连贯通顺对话的计算机系统。由于自然语言天然的复杂性，对话系统涉及了非常多的NLP子任务。本文考虑对其整体及其中涉及到的NLP技术做一个简单综述。</p>
+</blockquote>
+<h2 id="知识的向量表示"><a href="#知识的向量表示" class="headerlink" title="知识的向量表示"></a>知识的向量表示</h2><ul>
+<li>能够推导隐含知识</li>
+<li>将推理过程转化为向量、矩阵或者张量之间的计算，效率更高</li>
+<li>丢失了符号表示的可解释性<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209221125396.png" alt="从符号表示到向量表示"></li>
+</ul>
+<p>知识的向量表示促进多种模态的数据融合</p>
+<ul>
+<li>自然语言：为句子中的每个词学习一个向量表示</li>
+<li>知识图谱：为每个实体和关系学习一个向量表示</li>
+<li>图像视频：为视觉中的每个对象学习一个向量表示</li>
+</ul>
+<p>将符号表示和神经网络方法结合是知识表示的重要发展方向，是知识图谱构建的基本路线。 </p>
+<h1 id="AI历史长河中的知识表示方法（和知识图谱相关的）"><a href="#AI历史长河中的知识表示方法（和知识图谱相关的）" class="headerlink" title="AI历史长河中的知识表示方法（和知识图谱相关的）"></a>AI历史长河中的知识表示方法（和知识图谱相关的）</h1><p><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209221137246.png" alt="古老的知识表示研究"></p>
+<h2 id="一阶谓词逻辑"><a href="#一阶谓词逻辑" class="headerlink" title="一阶谓词逻辑"></a>一阶谓词逻辑</h2><ul>
+<li><p>描述逻辑（Description Logic）是一阶谓词逻辑的可判定子集，主要用于描述本体概念和属性，对于本体知识库的构建提供了便捷的表达形式，是与知识图谱最密切相关的知识表示方法之一。</p>
+<ul>
+<li>核心表达要素<ul>
+<li>概念Concepts-&gt;解释为一个领域的子集<ul>
+<li>例如：学生，已婚者：{x|Students(x)}, {x|Married(x)}</li>
+</ul>
+</li>
+<li>关系Relations-&gt;解释为指该领域的二元关系<ul>
+<li>例如：朋友，爱人：{&lt;x, y&gt;|friend(x,y)},{&lt;x,y&gt;|lover(x,y)}</li>
+</ul>
+</li>
+<li>个体Individuals-&gt;一个领域内的实例<ul>
+<li>例如：小明，小红：{Ming, Hong}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>描述逻辑的知识库O:=&lt;T,A&gt;,T即Tbox,A即Abox<blockquote>
+<p>在计算机科学中，术语TBox和ABox用于描述知识库中的两种不同类型的语句。TBox语句是“术语组件”，并通过将类和属性定义为领域词汇表来描述感兴趣的领域。ABox语句是“断言组件”，即与TBox的概念模型或本体相关的事实。ABox和TBox语句一起构成知识库或知识图。 </p>
+</blockquote>
+</li>
+<li>TBox包含内涵知识，描述概念的一般性质<ul>
+<li>定义：引入概念以及关系的名称，例如：Mother,Person, has_child</li>
+<li>包含：声明包含关系的公理，例如：$\text{Mother} \sqsubseteq \exists \text{has_child.Person}$</li>
+</ul>
+</li>
+<li>Abox包含外延知识（又称断言知识），描述论域中的特定个体<ul>
+<li>概念断言：表示某个对象是否属于某个概念，例如：Mother(Helen)</li>
+<li>关系断言：表示两个对象是否满足一定的关系，例如：has_child(Helen, Jack)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Horn Logic是一阶谓词逻辑的子集，主要特点是表达形式简单，复杂度低。著名的Prolog语言就是基于Horn逻辑设计实现的。</p>
+<blockquote>
+<p>Prolog 是一种与众不同的语言，不用来开发软件，专门解决逻辑问题。比如，”苏格拉底是人，人都会死，所以苏格拉底会死”这一类的问题。Prolog 就是”逻辑编程”（programming of Logic）的意思。只要给出事实和规则，它会自动分析其中的逻辑关系，然后允许用户通过查询，完成复杂的逻辑运算。</p>
+</blockquote>
+<ul>
+<li>核心表达元素<ul>
+<li>原子Atoms。$p(t_1, t_2, \ldots, t_n)$，$p$是谓词，$t_i$是项（变量或者常量），例如：has_child(X,Y)</li>
+<li>规则Rules。由原子构建$H:-B_1,B_2,\ldots,B_m$。其中$H$称为Head, $B_1, B_2, \ldots, B_m$称为Body，例如：has_child(X,Y):-has_son(X,Y)。右边的Atoms成立，左边的Atoms才成立</li>
+<li>事实Facts。没有Body且没有变量的规则，例如：has_son(Helen, Jack):-</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>一阶谓词逻辑的优缺点比较：</p>
+<ul>
+<li>优点<ul>
+<li>接近自然语言，容易被接受，且易于表示精确知识</li>
+<li>有严格的形式定义和推理规则，易于精确实现</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>无法表达不确定的知识，难以表示启发性知识以及元知识</li>
+<li>组合爆炸，经常出现事实、规则等的组合爆炸，导致效率低，推理复杂度通常较高</li>
+<li>是以人的逻辑为主导的表示方式，可能并不适合机器，机器可能有自己的逻辑表示</li>
+</ul>
+</li>
+</ul>
+<h2 id="产生式系统（Production-Systems"><a href="#产生式系统（Production-Systems" class="headerlink" title="产生式系统（Production Systems)"></a>产生式系统（Production Systems)</h2><p>Production Systems是一种更广泛意义的规则系统，专家系统多数是基于此构建。例如Feigenbaum研制的化学分子结构专家系统DENDRAL，Shortliffe研制的诊断感染性疾病的专家系统MYCIN。</p>
+<p>Production Systems的核心表达形式是<code>IF P THEN Q CF = [0, 1]</code>，其中P是产生式的前提，Q是一组结论或操作，CF(Certainty Factor)为确定性因子，也称置信度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IF 本微生物的染色斑是革兰氏阴性</span><br><span class="line">   本微生物的形状呈杆状</span><br><span class="line">   病人是中间宿主</span><br><span class="line">THEN 该微生物是绿脓杆菌，置信度为CF=0.6</span><br></pre></td></tr></table></figure>
+
+<p>Production Systems的优缺点</p>
+<ul>
+<li>优点<ul>
+<li>自然性：采用人类常用的因果关系知识表示形式，既直观、自然，又便于进行推理</li>
+<li>模块性：规则形式相同，易于模块化管理</li>
+<li>有效性：能表示确定性知识、不确定性知识、启发性知识、过程性知识等</li>
+<li>清晰性：有固定的格式，既便于规则设计，又易于对规则库中的知识进行一致性、完整性检测</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>效率不高：求解问题的过程是一个反复进行“匹配-冲突消解-执行”的过程。而规则库一般都比较大，匹配又十分费时，因此其工作效率不高</li>
+<li>在求解复杂问题时容易引起组合爆炸</li>
+<li>不能表达结构性知识：对具有结构关系的事物间的区别与联系表示出来</li>
+</ul>
+</li>
+</ul>
+<h2 id="框架系统（Frame-System"><a href="#框架系统（Frame-System" class="headerlink" title="框架系统（Frame System)"></a>框架系统（Frame System)</h2><p>Frame System认为人们对现实世界中事物的认识都是以一种类似于框架的结构存储在记忆中的。当面临一个新事物时，就从记忆中找出一个合适的框架，并根据实际情况对其细节加以修改、补充，从而形成对当前事物的认识。框架系统在很多NLP任务，如Dialogue系统中都有广泛应用。</p>
+<p>Frame System的基本要素：</p>
+<ul>
+<li>框架：是一种描述对象（事物、事件或概念等）属性的数据结构</li>
+<li>一个框架由若干个“槽”Slot结构组成，每个Slot又可分成若干个“侧面”</li>
+<li>一个Slot：用于描述所论对象某一方面的属性，其具有的属性值称为槽值</li>
+<li>一个侧面：用于描述相应属性的一个方面，其具有的属性值称为侧面值<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209221501755.png" alt="An Example of Frame System"></li>
+</ul>
+<p>Frame System的优缺点</p>
+<ul>
+<li>优点<ul>
+<li>对于知识的描述完整和全面</li>
+<li>基于框架的知识库质量高</li>
+<li>框架允许数值计算（框架系统的主要特点）</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>框架构建成本高，质量要求高</li>
+<li>框架的表达形式不灵活，很难同其它形式的数据集相互关联使用</li>
+</ul>
+</li>
+</ul>
+<h2 id="语义网络（Semantic-Network）"><a href="#语义网络（Semantic-Network）" class="headerlink" title="语义网络（Semantic Network）"></a>语义网络（Semantic Network）</h2><p>1968年J.R.Quillian在其博士论文中最先提出语义网络，把它作为人类联想记忆的一个显式心理学模型，并在他设计的可教式语言理解器TLC（Teachable Language Comprehenden）中用作知识表示方法<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202209221509355.png" alt="An Example of Semantic Network"></p>
+<p>WordNet是最著名的词典知识库，用于词义消歧。</p>
+<p>语义网络的优缺点</p>
+<ul>
+<li><p>优点</p>
+<ul>
+<li>结构性：是一种结构化的知识表示方法，能把事物的属性以及事物间的各种语义联想显式地表示出来</li>
+<li>联想性：最初作为人类联想记忆模型提出</li>
+<li>自然性：直观地把事物的属性及其语义联系表示出来，便于理解，自然语言与语义网络的转换比较容易实现，故语义网络表示法在自然语言理解系统中应用最为广泛</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>非严格性：没有公认的形式表示体系。一个给定的语义网络所表达的含义完全依赖于处理程序如何对它进行解释</li>
+<li>通过推理网络而实现的推理不能保证其正确性。支持全称量词和存在量词的语义网络在逻辑上是不充分的，不能保证不存在二义性</li>
+<li>处理上的复杂性：表示知识的手段多种多样，灵活性高，但是由于表示形式不一致使得处理复杂性高，对知识的检索相对复杂</li>
+</ul>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>知识表示与推理在人工智能的发展历史上一直处于核心地位</li>
+<li>传统的知识表示方法以符号表示为主，与知识图谱相关的典型方法有：描述逻辑、Horn Logic、产生式规则、框架系统和语义网络等</li>
+<li>这些方法各有优缺点，但是一个共同的缺点在于知识的获取过程主要依靠专家和人工，越复杂的知识表示框架知识获取过程越困难</li>
+</ul>
+<h1 id="知识图谱的符号表示方法"><a href="#知识图谱的符号表示方法" class="headerlink" title="知识图谱的符号表示方法"></a>知识图谱的符号表示方法</h1>
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/09/21/Knowledge-Graph-Introduction/">Knowledge Graph: Introduction</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 2021 - 2022  lixin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
