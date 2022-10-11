@@ -398,7 +398,55 @@
 <li>传统的知识表示方法以符号表示为主，与知识图谱相关的典型方法有：描述逻辑、Horn Logic、产生式规则、框架系统和语义网络等</li>
 <li>这些方法各有优缺点，但是一个共同的缺点在于知识的获取过程主要依靠专家和人工，越复杂的知识表示框架知识获取过程越困难</li>
 </ul>
-<h1 id="知识图谱的符号表示方法"><a href="#知识图谱的符号表示方法" class="headerlink" title="知识图谱的符号表示方法"></a>知识图谱的符号表示方法</h1>
+<h1 id="知识图谱的符号表示方法"><a href="#知识图谱的符号表示方法" class="headerlink" title="知识图谱的符号表示方法"></a>知识图谱的符号表示方法</h1><blockquote>
+<p>KG is more expensive than pure graph, but less complex than formal logic</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202210100959654.png" alt="KG,pure graph, and formal logic"></p>
+<p>三种主流的知识图谱表示方法：RDF, Property Graph (工业界常用), and OWL本体语言。</p>
+<h2 id="Property-Graph"><a href="#Property-Graph" class="headerlink" title="Property Graph"></a>Property Graph</h2><p>属性图是Neo4J实现的图结构表示模型，在工业界有广泛应用。其优点是表达方式灵活，例如，其允许为边增加属性，非常便于表示多元关系。属性图的存储充分利用图的结构进行优化，因而在查询计算方面具有较高优势。其缺点是缺乏工业标准规范的支持，由于不关注更深层的语义表达，也不支持符号逻辑推理。</p>
+<h2 id="RDF：Triple-based-Assertion-Model"><a href="#RDF：Triple-based-Assertion-Model" class="headerlink" title="RDF：Triple-based Assertion Model"></a>RDF：Triple-based Assertion Model</h2><p>RDF (Resource Description Framework)是国际万维网联盟W3C推动的面向Web的语义数据标准。</p>
+<h3 id="RDFS-Simple-Vocabulary-and-Schema"><a href="#RDFS-Simple-Vocabulary-and-Schema" class="headerlink" title="RDFS: Simple Vocabulary and Schema"></a>RDFS: Simple Vocabulary and Schema</h3><p>Small vocabulary for RDF: Class, subClassOf, type, Property, subPropertyOf, Domain, Range</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202210101625701.png" alt="small vocab for RDF"></p>
+<p>基于RDFS可以进行简单的符号推理，但是其表达能力有限，在实际使用中需要定义更加复杂的概念，刻画更加复杂的概念关系，因此需要OWL</p>
+<h2 id="OWL：Web-Ontologies"><a href="#OWL：Web-Ontologies" class="headerlink" title="OWL：Web Ontologies"></a>OWL：Web Ontologies</h2><p>OWL可以看作是RDF Schema的扩展，增加了更多的语义表达构件：</p>
+<ul>
+<li>Complex Class: intersection, union and complement</li>
+<li>Property Restrictions: existential quantification, universal quantification, hasValue</li>
+<li>Cardinality Restrictions: maxQualifiedCardinality, minQualifiedCardinality, qualifiedCardinality</li>
+<li>Property Characteristics: inverseOf, SymmetricProperty, AsymmetricProperty, propertyDisjointWith, ReflexiveProperty, FunctionalProperty</li>
+<li>Property Chains</li>
+</ul>
+<h3 id="OWL语言家族"><a href="#OWL语言家族" class="headerlink" title="OWL语言家族"></a>OWL语言家族</h3><p>每种子语言是前述语义表达构件的一类集合，并有相应的复杂度分析。</p>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>属性图是工业界最常见的图谱建模方法，属性图数据库充分利用图结构特点做了性能优化，实用度高，但是不支持符号推理</li>
+<li>RDF是W3C推动的语义数据交换标准与规范，有更严格的语义逻辑基础，支持推理，并兼容更复杂的本体表示语言OWL</li>
+<li>在三元组无法满足语义表示需要时，OWL作为一种完备的本体语言，提供了更多可供选择的语义表达构件</li>
+<li>描述逻辑可以为知识图谱的表示与建模提供理论基础。描述逻辑之于知识图谱，好比关系代数之于关系数据库</li>
+</ul>
+<h1 id="知识图谱的向量表示方法"><a href="#知识图谱的向量表示方法" class="headerlink" title="知识图谱的向量表示方法"></a>知识图谱的向量表示方法</h1><h2 id="词的向量表示"><a href="#词的向量表示" class="headerlink" title="词的向量表示"></a>词的向量表示</h2><p><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202210111449357.png" alt="One hot encoding"></p>
+<p>词的语义可以由上下文决定</p>
+<blockquote>
+<p>you shall know a word by the company it keeps. -J.R.Firth(1957)</p>
+</blockquote>
+<p>统计词在大量语料中的上下文特征，学习词的分布式向量表示，低维稠密的向量。</p>
+<blockquote>
+<p>词向量学习模型举例：</p>
+<p>CBoW: 通过前几个词和后几个词，预测中间的词</p>
+<p>Skip-gram: 利用中间的词，预测前后几个词</p>
+</blockquote>
+<p>词的分布式语义表示有有趣的特性<br><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202210111458689.png"><br>Italy和France都是国家，Rome和Paris都是首都，它们在向量的某些维度上十分相似。</p>
+<h2 id="知识图谱的向量表示（嵌入）"><a href="#知识图谱的向量表示（嵌入）" class="headerlink" title="知识图谱的向量表示（嵌入）"></a>知识图谱的向量表示（嵌入）</h2><p><img src="https://cdn.jsdelivr.net/gh/Lx09/picgo/202210111459188.png"></p>
+<p>利用句子中主谓宾三元组学习向量表示</p>
+<blockquote>
+<p>知识图谱嵌入模型:TransE，DistMult</p>
+</blockquote>
+<h2 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>目前较为常见的知识图谱实践包括RDF图模型和属性图模型</li>
+<li>尽管很多知识图谱没有应用复杂的知识表示框架，Schema工程对于知识图谱的构建仍然是基础性和必要性的工作，高质量的知识图谱构建通常从Schema设计开始</li>
+<li>图模型是更加接近人脑认知和自然语言的数据模型，RDF作为一种知识图谱表示框架的参考标准，向上对接OWL等更丰富的语义表示和推理能力，向下对接简化后的属性图数据库以及图计算引擎，仍然是最值得重视的知识图谱表示框架</li>
+<li>知识图谱的表示学习是符号表示与神经网络相结合比较自然且有前景的方向。知识的向量表示有利于刻画那些隐含不明确的知识，同时基于神经网络和表示学习实现的推理一定程度上可以解决传统符号推理所面临的鲁棒性不高不容易扩展等众多问题</li>
+</ul>
+
         </div>
 
         
