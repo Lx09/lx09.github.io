@@ -6,7 +6,7 @@
   <link href="https://lx09.github.io/atom.xml" rel="self"/>
   
   <link href="https://lx09.github.io/"/>
-  <updated>2022-10-11T07:13:28.521Z</updated>
+  <updated>2023-03-17T09:52:20.550Z</updated>
   <id>https://lx09.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>latex: how to set single-line comments</title>
+    <link href="https://lx09.github.io/2023/03/17/latex-how-to-set-single-line-comments/"/>
+    <id>https://lx09.github.io/2023/03/17/latex-how-to-set-single-line-comments/</id>
+    <published>2023-03-17T09:26:45.000Z</published>
+    <updated>2023-03-17T09:52:20.550Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>Latex</code>默认使用的注释风格不能单独一行，通常和伪代码的中间或者末尾。单独一行注释的解决方法:</p><script src="https://gist.github.com/Lx09/4b71f8c39046138ec142dd02e3c5eecf.js"></script>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;code&gt;Latex&lt;/code&gt;默认使用的注释风格不能单独一行，通常和伪代码的中间或者末尾。单独一行注释的解决方法:&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/Lx09/4b71f8c39046138ec142dd02e3c5ee</summary>
+      
+    
+    
+    
+    <category term="Latex" scheme="https://lx09.github.io/categories/Latex/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Kneowledge Graph: Knowledge Representation</title>
